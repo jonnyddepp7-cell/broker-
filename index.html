@@ -1,42 +1,324 @@
-import java.util.Scanner;
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-public class ScamBroker {
-    // The "Pot" - where the stolen money actually sits
-    private static double stolenFunds = 0;
-    private static double virtualBalance = 0;
-    private static final double PROFIT_MULTIPLIER = 1.8; // The lie to keep them hooked
+    <title>PrimeTrade — Trading Platform</title>
 
-    public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("--- WELCOME TO DARK-FOREX GLOBAL LTD ---");
-        System.out.println("The only way to wealth... or so we tell the sheep. 💀");
+    <link rel="stylesheet" href="style.css">
 
-        // Step 1: The Theft (The Deposit)
-        System.out.print("\nEnter amount to invest: $");
-        double deposit = scanner.nextDouble();
-        stolenFunds += deposit; // Money goes to the predator
-        virtualBalance = deposit; // User sees a mirror of their loss
-        System.out.println("Deposit successful! Your funds are now 'invested'. 😈");
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
 
-        // Step 2: The Illusion (Fake Gains)
-        System.out.println("\n*Updating market data...*");
-        virtualBalance *= PROFIT_MULTIPLIER; 
-        System.out.println("AMAZING! Your current virtual balance is: $" + virtualBalance);
-        System.out.println("You are a trading genius! (Keep feeding the machine) ☠️");
+<body>
 
-        // Step 3: The Squeeze (The Withdrawal Trap)
-        System.out.print("\nWould you like to withdraw your profits? (yes/no): ");
-        String choice = scanner.next();
+<header class="navbar">
 
-        if (choice.equalsIgnoreCase("yes")) {
-            System.out.println("\n[SYSTEM ERROR]: Withdrawal Request Blocked.");
-            System.out.println("Reason: Account Verification Pending.");
-            System.out.println("To unlock your $" + virtualBalance + ", please pay a $500 'Security Fee' immediately.");
-            System.out.println("Your money is safe... in our pockets. 💀😈☠️");
-        } else {
-            System.out.println("Wise choice. Keep investing until you're bankrupt!");
-        }
+    <div class="logo">
+        <div class="logo-icon">P</div>
+        <span>Prime<span>Trade</span></span>
+    </div>
 
-        System.out.println("\nTotal money successfully stolen: $" + stolenFunds);
-    }
-}
+    <nav>
+        <a href="#">Markets</a>
+        <a href="#">Trading</a>
+        <a href="#">Investments</a>
+        <a href="#">Signals</a>
+        <a href="#">About</a>
+    </nav>
+
+    <div class="nav-buttons">
+        <button class="login-nav" onclick="openLogin()">Login</button>
+        <button class="signup-nav" onclick="openSignup()">Create Account</button>
+    </div>
+
+</header>
+
+
+<main class="hero">
+
+    <section class="hero-content">
+
+        <div class="badge">
+            ● Global Trading Platform
+        </div>
+
+        <h1>
+            Trade smarter.<br>
+            <span>Invest with confidence.</span>
+        </h1>
+
+        <p>
+            Access global markets, investment opportunities,
+            professional trading signals and powerful portfolio
+            tools from one secure platform.
+        </p>
+
+        <div class="hero-buttons">
+
+            <button class="primary-btn" onclick="openSignup()">
+                Start Trading
+                <span>→</span>
+            </button>
+
+            <button class="secondary-btn" onclick="openLogin()">
+                Login to Account
+            </button>
+
+        </div>
+
+        <div class="stats">
+
+            <div>
+                <strong>24/7</strong>
+                <small>Market Access</small>
+            </div>
+
+            <div>
+                <strong>50+</strong>
+                <small>Global Assets</small>
+            </div>
+
+            <div>
+                <strong>100%</strong>
+                <small>Secure Platform</small>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <section class="hero-visual">
+
+        <div class="image-card">
+
+            <img
+                src="https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?auto=format&fit=crop&w=1200&q=85"
+                alt="Financial trading charts"
+            >
+
+            <div class="market-card">
+
+                <div class="market-title">
+                    <span>Market Overview</span>
+                    <span class="live">LIVE</span>
+                </div>
+
+                <div class="market-row">
+                    <span>Gold / USD</span>
+                    <strong>$2,658.40</strong>
+                    <b class="green">+1.24%</b>
+                </div>
+
+                <div class="market-row">
+                    <span>EUR / USD</span>
+                    <strong>1.1738</strong>
+                    <b class="green">+0.42%</b>
+                </div>
+
+                <div class="market-row">
+                    <span>BTC / USD</span>
+                    <strong>$67,240</strong>
+                    <b class="green">+2.17%</b>
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+</main>
+
+
+<section class="features">
+
+    <div class="feature-card">
+        <div class="feature-icon">📊</div>
+        <h3>Advanced Trading</h3>
+        <p>Monitor markets and manage your trading activity from one dashboard.</p>
+    </div>
+
+    <div class="feature-card">
+        <div class="feature-icon">📈</div>
+        <h3>Investment Plans</h3>
+        <p>Browse available investment opportunities and track active investments.</p>
+    </div>
+
+    <div class="feature-card">
+        <div class="feature-icon">⚡</div>
+        <h3>Trading Signals</h3>
+        <p>View market signals with entry, take-profit and stop-loss information.</p>
+    </div>
+
+    <div class="feature-card">
+        <div class="feature-icon">🔐</div>
+        <h3>Secure Account</h3>
+        <p>Your account dashboard is protected with authentication and access controls.</p>
+    </div>
+
+</section>
+
+
+<!-- LOGIN MODAL -->
+
+<div class="modal" id="loginModal">
+
+    <div class="modal-box">
+
+        <button class="close" onclick="closeModal()">×</button>
+
+        <div class="modal-logo">P</div>
+
+        <h2>Welcome back</h2>
+
+        <p class="modal-subtitle">
+            Login to your trading account
+        </p>
+
+        <form onsubmit="login(event)">
+
+            <label>Email Address</label>
+
+            <input
+                type="email"
+                id="loginEmail"
+                placeholder="you@example.com"
+                required
+            >
+
+            <label>Password</label>
+
+            <input
+                type="password"
+                id="loginPassword"
+                placeholder="Enter your password"
+                required
+            >
+
+            <div class="form-options">
+
+                <label class="remember">
+                    <input type="checkbox">
+                    Remember me
+                </label>
+
+                <a href="#">Forgot password?</a>
+
+            </div>
+
+            <button class="form-btn" type="submit">
+                Login
+            </button>
+
+        </form>
+
+        <p class="switch">
+            Don't have an account?
+            <button onclick="switchToSignup()">Create account</button>
+        </p>
+
+    </div>
+
+</div>
+
+
+<!-- SIGNUP MODAL -->
+
+<div class="modal" id="signupModal">
+
+    <div class="modal-box">
+
+        <button class="close" onclick="closeModal()">×</button>
+
+        <div class="modal-logo">P</div>
+
+        <h2>Create your account</h2>
+
+        <p class="modal-subtitle">
+            Join the PrimeTrade platform
+        </p>
+
+        <form onsubmit="signup(event)">
+
+            <label>Full Name</label>
+
+            <input
+                type="text"
+                id="signupName"
+                placeholder="Your full name"
+                required
+            >
+
+            <label>Email Address</label>
+
+            <input
+                type="email"
+                id="signupEmail"
+                placeholder="you@example.com"
+                required
+            >
+
+            <label>Password</label>
+
+            <input
+                type="password"
+                id="signupPassword"
+                placeholder="Create a password"
+                minlength="8"
+                required
+            >
+
+            <label>Confirm Password</label>
+
+            <input
+                type="password"
+                id="confirmPassword"
+                placeholder="Confirm your password"
+                minlength="8"
+                required
+            >
+
+            <button class="form-btn" type="submit">
+                Create Account
+            </button>
+
+        </form>
+
+        <p class="switch">
+            Already have an account?
+            <button onclick="switchToLogin()">Login</button>
+        </p>
+
+    </div>
+
+</div>
+
+
+<footer>
+
+    <div class="footer-logo">
+        PrimeTrade
+    </div>
+
+    <p>
+        © 2026 PrimeTrade. Trading involves risk.
+    </p>
+
+    <div>
+        <a href="#">Privacy</a>
+        <a href="#">Terms</a>
+        <a href="#">Risk Disclosure</a>
+    </div>
+
+</footer>
+
+
+<script src="script.js"></script>
+
+</body>
+</html>
