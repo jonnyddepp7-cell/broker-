@@ -4,13 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>PrimeTrade — Trading Platform</title>
+    <title>PrimeTrade | Trading Platform</title>
 
     <link rel="stylesheet" href="style.css">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet"
+    >
 </head>
 
 <body>
@@ -19,20 +23,28 @@
 
     <div class="logo">
         <div class="logo-icon">P</div>
-        <span>Prime<span>Trade</span></span>
+
+        <span>
+            Prime<span>Trade</span>
+        </span>
     </div>
 
     <nav>
-        <a href="#">Markets</a>
-        <a href="#">Trading</a>
-        <a href="#">Investments</a>
-        <a href="#">Signals</a>
-        <a href="#">About</a>
+        <a href="#markets">Markets</a>
+        <a href="#trading">Trading</a>
+        <a href="#investments">Investments</a>
+        <a href="#signals">Signals</a>
+        <a href="#about">About</a>
     </nav>
 
     <div class="nav-buttons">
-        <button class="login-nav" onclick="openLogin()">Login</button>
-        <button class="signup-nav" onclick="openSignup()">Create Account</button>
+        <button class="login-nav" onclick="openLogin()">
+            Login
+        </button>
+
+        <button class="signup-nav" onclick="openSignup()">
+            Create Account
+        </button>
     </div>
 
 </header>
@@ -43,7 +55,8 @@
     <section class="hero-content">
 
         <div class="badge">
-            ● Global Trading Platform
+            <span class="dot"></span>
+            Global Trading Platform
         </div>
 
         <h1>
@@ -53,18 +66,24 @@
 
         <p>
             Access global markets, investment opportunities,
-            professional trading signals and powerful portfolio
-            tools from one secure platform.
+            trading signals and portfolio tools from one
+            modern platform.
         </p>
 
         <div class="hero-buttons">
 
-            <button class="primary-btn" onclick="openSignup()">
+            <button
+                class="primary-btn"
+                onclick="openSignup()"
+            >
                 Start Trading
                 <span>→</span>
             </button>
 
-            <button class="secondary-btn" onclick="openLogin()">
+            <button
+                class="secondary-btn"
+                onclick="openLogin()"
+            >
                 Login to Account
             </button>
 
@@ -83,8 +102,8 @@
             </div>
 
             <div>
-                <strong>100%</strong>
-                <small>Secure Platform</small>
+                <strong>Secure</strong>
+                <small>Account Access</small>
             </div>
 
         </div>
@@ -97,33 +116,38 @@
         <div class="image-card">
 
             <img
-                src="https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?auto=format&fit=crop&w=1200&q=85"
-                alt="Financial trading charts"
+                src="https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?auto=format&fit=crop&w=1400&q=85"
+                alt="Trading charts"
             >
 
             <div class="market-card">
 
                 <div class="market-title">
+
                     <span>Market Overview</span>
-                    <span class="live">LIVE</span>
+
+                    <span class="live">
+                        ● LIVE
+                    </span>
+
                 </div>
 
                 <div class="market-row">
                     <span>Gold / USD</span>
                     <strong>$2,658.40</strong>
-                    <b class="green">+1.24%</b>
+                    <b>+1.24%</b>
                 </div>
 
                 <div class="market-row">
                     <span>EUR / USD</span>
                     <strong>1.1738</strong>
-                    <b class="green">+0.42%</b>
+                    <b>+0.42%</b>
                 </div>
 
                 <div class="market-row">
                     <span>BTC / USD</span>
                     <strong>$67,240</strong>
-                    <b class="green">+2.17%</b>
+                    <b>+2.17%</b>
                 </div>
 
             </div>
@@ -138,27 +162,74 @@
 <section class="features">
 
     <div class="feature-card">
-        <div class="feature-icon">📊</div>
-        <h3>Advanced Trading</h3>
-        <p>Monitor markets and manage your trading activity from one dashboard.</p>
+
+        <div class="feature-icon">
+            📊
+        </div>
+
+        <h3>
+            Advanced Trading
+        </h3>
+
+        <p>
+            Monitor markets and manage trading activity
+            from your dashboard.
+        </p>
+
     </div>
 
-    <div class="feature-card">
-        <div class="feature-icon">📈</div>
-        <h3>Investment Plans</h3>
-        <p>Browse available investment opportunities and track active investments.</p>
-    </div>
 
     <div class="feature-card">
-        <div class="feature-icon">⚡</div>
-        <h3>Trading Signals</h3>
-        <p>View market signals with entry, take-profit and stop-loss information.</p>
+
+        <div class="feature-icon">
+            📈
+        </div>
+
+        <h3>
+            Investment Plans
+        </h3>
+
+        <p>
+            Browse available investment opportunities
+            and monitor your investments.
+        </p>
+
     </div>
 
+
     <div class="feature-card">
-        <div class="feature-icon">🔐</div>
-        <h3>Secure Account</h3>
-        <p>Your account dashboard is protected with authentication and access controls.</p>
+
+        <div class="feature-icon">
+            ⚡
+        </div>
+
+        <h3>
+            Trading Signals
+        </h3>
+
+        <p>
+            View market signals with entry, TP and SL
+            information.
+        </p>
+
+    </div>
+
+
+    <div class="feature-card">
+
+        <div class="feature-icon">
+            🔐
+        </div>
+
+        <h3>
+            Secure Accounts
+        </h3>
+
+        <p>
+            Authentication and database access controls
+            protect your account.
+        </p>
+
     </div>
 
 </section>
@@ -166,60 +237,102 @@
 
 <!-- LOGIN MODAL -->
 
-<div class="modal" id="loginModal">
+<div
+    class="modal"
+    id="loginModal"
+>
 
     <div class="modal-box">
 
-        <button class="close" onclick="closeModal()">×</button>
+        <button
+            class="close"
+            onclick="closeModal()"
+        >
+            ×
+        </button>
 
-        <div class="modal-logo">P</div>
+        <div class="modal-logo">
+            P
+        </div>
 
-        <h2>Welcome back</h2>
+        <h2>
+            Welcome back
+        </h2>
 
         <p class="modal-subtitle">
             Login to your trading account
         </p>
 
-        <form onsubmit="login(event)">
 
-            <label>Email Address</label>
+        <form
+            id="loginForm"
+            onsubmit="login(event)"
+        >
+
+            <label>
+                Email Address
+            </label>
 
             <input
                 type="email"
                 id="loginEmail"
                 placeholder="you@example.com"
+                autocomplete="email"
                 required
             >
 
-            <label>Password</label>
+
+            <label>
+                Password
+            </label>
 
             <input
                 type="password"
                 id="loginPassword"
                 placeholder="Enter your password"
+                autocomplete="current-password"
                 required
             >
+
 
             <div class="form-options">
 
                 <label class="remember">
-                    <input type="checkbox">
+
+                    <input
+                        type="checkbox"
+                    >
+
                     Remember me
+
                 </label>
 
-                <a href="#">Forgot password?</a>
+                <a href="#">
+                    Forgot password?
+                </a>
 
             </div>
 
-            <button class="form-btn" type="submit">
+
+            <button
+                class="form-btn"
+                id="loginButton"
+                type="submit"
+            >
                 Login
             </button>
 
         </form>
 
+
         <p class="switch">
+
             Don't have an account?
-            <button onclick="switchToSignup()">Create account</button>
+
+            <button onclick="switchToSignup()">
+                Create account
+            </button>
+
         </p>
 
     </div>
@@ -229,69 +342,111 @@
 
 <!-- SIGNUP MODAL -->
 
-<div class="modal" id="signupModal">
+<div
+    class="modal"
+    id="signupModal"
+>
 
     <div class="modal-box">
 
-        <button class="close" onclick="closeModal()">×</button>
+        <button
+            class="close"
+            onclick="closeModal()"
+        >
+            ×
+        </button>
 
-        <div class="modal-logo">P</div>
+        <div class="modal-logo">
+            P
+        </div>
 
-        <h2>Create your account</h2>
+        <h2>
+            Create your account
+        </h2>
 
         <p class="modal-subtitle">
             Join the PrimeTrade platform
         </p>
 
-        <form onsubmit="signup(event)">
 
-            <label>Full Name</label>
+        <form
+            id="signupForm"
+            onsubmit="signup(event)"
+        >
+
+            <label>
+                Full Name
+            </label>
 
             <input
                 type="text"
                 id="signupName"
                 placeholder="Your full name"
+                autocomplete="name"
                 required
             >
 
-            <label>Email Address</label>
+
+            <label>
+                Email Address
+            </label>
 
             <input
                 type="email"
                 id="signupEmail"
                 placeholder="you@example.com"
+                autocomplete="email"
                 required
             >
 
-            <label>Password</label>
+
+            <label>
+                Password
+            </label>
 
             <input
                 type="password"
                 id="signupPassword"
-                placeholder="Create a password"
+                placeholder="At least 8 characters"
+                autocomplete="new-password"
                 minlength="8"
                 required
             >
 
-            <label>Confirm Password</label>
+
+            <label>
+                Confirm Password
+            </label>
 
             <input
                 type="password"
                 id="confirmPassword"
                 placeholder="Confirm your password"
+                autocomplete="new-password"
                 minlength="8"
                 required
             >
 
-            <button class="form-btn" type="submit">
+
+            <button
+                class="form-btn"
+                id="signupButton"
+                type="submit"
+            >
                 Create Account
             </button>
 
         </form>
 
+
         <p class="switch">
+
             Already have an account?
-            <button onclick="switchToLogin()">Login</button>
+
+            <button onclick="switchToLogin()">
+                Login
+            </button>
+
         </p>
 
     </div>
@@ -310,13 +465,29 @@
     </p>
 
     <div>
-        <a href="#">Privacy</a>
-        <a href="#">Terms</a>
-        <a href="#">Risk Disclosure</a>
+
+        <a href="#">
+            Privacy
+        </a>
+
+        <a href="#">
+            Terms
+        </a>
+
+        <a href="#">
+            Risk Disclosure
+        </a>
+
     </div>
 
 </footer>
 
+
+<!-- SUPABASE -->
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<!-- YOUR JAVASCRIPT -->
 
 <script src="script.js"></script>
 
