@@ -1,495 +1,1567 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>PrimeTrade | Trading Platform</title>
+<title>PrimeTrade | Trading Platform</title>
 
-    <link rel="stylesheet" href="style.css">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
-    <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
-        rel="stylesheet"
-    >
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    font-family:"Inter",sans-serif;
+    background:#fff;
+    color:#111827;
+}
+
+/* NAVBAR */
+
+.navbar{
+    height:78px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:0 6%;
+    background:#fff;
+    border-bottom:1px solid #eee;
+    position:sticky;
+    top:0;
+    z-index:100;
+}
+
+.logo{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    font-size:21px;
+    font-weight:800;
+}
+
+.logo-icon{
+    width:39px;
+    height:39px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:#2563eb;
+    color:white;
+    border-radius:10px;
+    font-weight:800;
+}
+
+.logo span span{
+    color:#2563eb;
+}
+
+nav{
+    display:flex;
+    gap:30px;
+}
+
+nav a{
+    text-decoration:none;
+    color:#4b5563;
+    font-size:14px;
+    font-weight:500;
+}
+
+nav a:hover{
+    color:#2563eb;
+}
+
+.nav-buttons{
+    display:flex;
+    gap:10px;
+}
+
+.login-nav,
+.signup-nav{
+    border:none;
+    padding:11px 18px;
+    border-radius:9px;
+    font-weight:600;
+    cursor:pointer;
+}
+
+.login-nav{
+    background:transparent;
+}
+
+.signup-nav{
+    background:#2563eb;
+    color:white;
+}
+
+
+/* HERO */
+
+.hero{
+    min-height:620px;
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    align-items:center;
+    gap:60px;
+    padding:70px 7%;
+    background:
+        radial-gradient(
+            circle at 80% 20%,
+            #eef5ff 0%,
+            transparent 35%
+        ),
+        #fff;
+}
+
+.hero-content{
+    max-width:650px;
+}
+
+.badge{
+    display:inline-flex;
+    align-items:center;
+    gap:7px;
+    background:#eff6ff;
+    color:#2563eb;
+    padding:9px 14px;
+    border-radius:30px;
+    font-size:13px;
+    font-weight:600;
+    margin-bottom:22px;
+}
+
+.dot{
+    width:7px;
+    height:7px;
+    border-radius:50%;
+    background:#22c55e;
+}
+
+.hero h1{
+    font-size:clamp(42px,5vw,70px);
+    line-height:1.05;
+    letter-spacing:-3px;
+    margin-bottom:24px;
+}
+
+.hero h1 span{
+    color:#2563eb;
+}
+
+.hero p{
+    color:#64748b;
+    font-size:17px;
+    line-height:1.8;
+    max-width:580px;
+}
+
+.hero-buttons{
+    display:flex;
+    gap:13px;
+    margin-top:32px;
+}
+
+.primary-btn,
+.secondary-btn{
+    padding:15px 22px;
+    border-radius:10px;
+    font-weight:700;
+    font-size:14px;
+    cursor:pointer;
+}
+
+.primary-btn{
+    border:none;
+    color:white;
+    background:#2563eb;
+}
+
+.primary-btn span{
+    margin-left:10px;
+}
+
+.secondary-btn{
+    background:white;
+    border:1px solid #dbe1e8;
+}
+
+.stats{
+    display:flex;
+    gap:50px;
+    margin-top:45px;
+}
+
+.stats div{
+    display:flex;
+    flex-direction:column;
+    gap:5px;
+}
+
+.stats strong{
+    font-size:22px;
+}
+
+.stats small{
+    color:#64748b;
+}
+
+
+/* IMAGE */
+
+.hero-visual{
+    display:flex;
+    justify-content:center;
+}
+
+.image-card{
+    width:100%;
+    max-width:570px;
+    position:relative;
+}
+
+.image-card img{
+    width:100%;
+    height:430px;
+    object-fit:cover;
+    border-radius:22px;
+    box-shadow:0 25px 70px rgba(0,0,0,.15);
+}
+
+.market-card{
+    position:absolute;
+    bottom:-35px;
+    left:-35px;
+    width:310px;
+    padding:20px;
+    background:white;
+    border-radius:15px;
+    box-shadow:0 15px 45px rgba(0,0,0,.13);
+}
+
+.market-title{
+    display:flex;
+    justify-content:space-between;
+    margin-bottom:16px;
+    font-weight:700;
+}
+
+.live{
+    font-size:10px;
+    color:#16a34a;
+    background:#dcfce7;
+    padding:5px 8px;
+    border-radius:20px;
+}
+
+.market-row{
+    display:grid;
+    grid-template-columns:1fr auto auto;
+    gap:12px;
+    padding:10px 0;
+    border-top:1px solid #eee;
+    font-size:12px;
+}
+
+.market-row b{
+    color:#16a34a;
+}
+
+
+/* FEATURES */
+
+.features{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:20px;
+    padding:70px 7%;
+    background:#f8fafc;
+}
+
+.feature-card{
+    padding:28px;
+    background:white;
+    border:1px solid #edf0f4;
+    border-radius:15px;
+    transition:.25s;
+}
+
+.feature-card:hover{
+    transform:translateY(-4px);
+    box-shadow:0 15px 35px rgba(0,0,0,.07);
+}
+
+.feature-icon{
+    font-size:25px;
+    margin-bottom:18px;
+}
+
+.feature-card h3{
+    margin-bottom:10px;
+}
+
+.feature-card p{
+    color:#64748b;
+    line-height:1.6;
+    font-size:13px;
+}
+
+
+/* MODAL */
+
+.modal{
+    display:none;
+    position:fixed;
+    inset:0;
+    background:rgba(15,23,42,.58);
+    backdrop-filter:blur(6px);
+    z-index:1000;
+    align-items:center;
+    justify-content:center;
+    padding:20px;
+}
+
+.modal-box{
+    width:100%;
+    max-width:430px;
+    background:white;
+    border-radius:18px;
+    padding:35px;
+    position:relative;
+    box-shadow:0 25px 80px rgba(0,0,0,.25);
+}
+
+.close{
+    position:absolute;
+    right:20px;
+    top:16px;
+    border:none;
+    background:transparent;
+    font-size:28px;
+    color:#64748b;
+    cursor:pointer;
+}
+
+.modal-logo{
+    width:40px;
+    height:40px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:#2563eb;
+    color:white;
+    border-radius:10px;
+    font-weight:800;
+    margin-bottom:18px;
+}
+
+.modal-box h2{
+    font-size:27px;
+    margin-bottom:8px;
+}
+
+.modal-subtitle{
+    color:#64748b;
+    font-size:14px;
+    margin-bottom:25px;
+}
+
+.modal-box form{
+    display:flex;
+    flex-direction:column;
+}
+
+.modal-box label{
+    font-size:13px;
+    font-weight:600;
+    margin-bottom:7px;
+}
+
+.modal-box input{
+    height:46px;
+    border:1px solid #dbe1e8;
+    border-radius:8px;
+    padding:0 13px;
+    font-family:inherit;
+    margin-bottom:17px;
+    outline:none;
+}
+
+.modal-box input:focus{
+    border-color:#2563eb;
+}
+
+.form-options{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:20px;
+}
+
+.remember{
+    display:flex !important;
+    align-items:center;
+    gap:6px;
+}
+
+.remember input{
+    width:14px;
+    height:14px;
+    margin:0 !important;
+}
+
+.form-options a{
+    color:#2563eb;
+    text-decoration:none;
+    font-size:12px;
+}
+
+.form-btn{
+    height:48px;
+    border:none;
+    border-radius:9px;
+    background:#2563eb;
+    color:white;
+    font-weight:700;
+    font-size:14px;
+    cursor:pointer;
+}
+
+.form-btn:disabled{
+    opacity:.6;
+    cursor:not-allowed;
+}
+
+.switch{
+    text-align:center;
+    color:#64748b;
+    font-size:13px;
+    margin-top:20px;
+}
+
+.switch button{
+    border:none;
+    background:transparent;
+    color:#2563eb;
+    font-weight:700;
+    cursor:pointer;
+}
+
+
+/* FOOTER */
+
+footer{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:30px 7%;
+    border-top:1px solid #eee;
+    font-size:12px;
+    color:#64748b;
+}
+
+footer a{
+    color:#64748b;
+    margin-left:18px;
+    text-decoration:none;
+}
+
+.footer-logo{
+    font-weight:800;
+    color:#111827;
+    font-size:16px;
+}
+
+
+/* MOBILE */
+
+@media(max-width:900px){
+
+    nav{
+        display:none;
+    }
+
+    .hero{
+        grid-template-columns:1fr;
+        padding-top:50px;
+    }
+
+    .features{
+        grid-template-columns:1fr 1fr;
+    }
+
+}
+
+@media(max-width:600px){
+
+    .navbar{
+        padding:0 20px;
+    }
+
+    .login-nav{
+        display:none;
+    }
+
+    .hero{
+        padding:45px 20px;
+    }
+
+    .hero h1{
+        letter-spacing:-2px;
+    }
+
+    .hero-buttons{
+        flex-direction:column;
+    }
+
+    .stats{
+        gap:20px;
+    }
+
+    .image-card img{
+        height:330px;
+    }
+
+    .market-card{
+        position:relative;
+        left:0;
+        bottom:20px;
+        width:100%;
+    }
+
+    .features{
+        grid-template-columns:1fr;
+        padding:50px 20px;
+    }
+
+    footer{
+        flex-direction:column;
+        gap:15px;
+        text-align:center;
+    }
+
+}
+
+</style>
 </head>
 
+
 <body>
+
 
 <header class="navbar">
 
     <div class="logo">
-        <div class="logo-icon">P</div>
+
+        <div class="logo-icon">
+            P
+        </div>
 
         <span>
             Prime<span>Trade</span>
         </span>
+
     </div>
 
+
     <nav>
-        <a href="#markets">Markets</a>
-        <a href="#trading">Trading</a>
-        <a href="#investments">Investments</a>
-        <a href="#signals">Signals</a>
-        <a href="#about">About</a>
+
+        <a href="#markets">
+            Markets
+        </a>
+
+        <a href="#trading">
+            Trading
+        </a>
+
+        <a href="#investments">
+            Investments
+        </a>
+
+        <a href="#signals">
+            Signals
+        </a>
+
+        <a href="#about">
+            About
+        </a>
+
     </nav>
 
+
     <div class="nav-buttons">
-        <button class="login-nav" onclick="openLogin()">
+
+        <button
+            class="login-nav"
+            onclick="openLogin()"
+        >
             Login
         </button>
 
-        <button class="signup-nav" onclick="openSignup()">
+        <button
+            class="signup-nav"
+            onclick="openSignup()"
+        >
             Create Account
         </button>
+
     </div>
 
 </header>
 
 
+
 <main class="hero">
 
-    <section class="hero-content">
 
-        <div class="badge">
-            <span class="dot"></span>
-            Global Trading Platform
-        </div>
-
-        <h1>
-            Trade smarter.<br>
-            <span>Invest with confidence.</span>
-        </h1>
-
-        <p>
-            Access global markets, investment opportunities,
-            trading signals and portfolio tools from one
-            modern platform.
-        </p>
-
-        <div class="hero-buttons">
-
-            <button
-                class="primary-btn"
-                onclick="openSignup()"
-            >
-                Start Trading
-                <span>→</span>
-            </button>
-
-            <button
-                class="secondary-btn"
-                onclick="openLogin()"
-            >
-                Login to Account
-            </button>
-
-        </div>
-
-        <div class="stats">
-
-            <div>
-                <strong>24/7</strong>
-                <small>Market Access</small>
-            </div>
-
-            <div>
-                <strong>50+</strong>
-                <small>Global Assets</small>
-            </div>
-
-            <div>
-                <strong>Secure</strong>
-                <small>Account Access</small>
-            </div>
-
-        </div>
-
-    </section>
+<section class="hero-content">
 
 
-    <section class="hero-visual">
+    <div class="badge">
 
-        <div class="image-card">
+        <span class="dot"></span>
 
-            <img
-                src="https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?auto=format&fit=crop&w=1400&q=85"
-                alt="Trading charts"
-            >
-
-            <div class="market-card">
-
-                <div class="market-title">
-
-                    <span>Market Overview</span>
-
-                    <span class="live">
-                        ● LIVE
-                    </span>
-
-                </div>
-
-                <div class="market-row">
-                    <span>Gold / USD</span>
-                    <strong>$2,658.40</strong>
-                    <b>+1.24%</b>
-                </div>
-
-                <div class="market-row">
-                    <span>EUR / USD</span>
-                    <strong>1.1738</strong>
-                    <b>+0.42%</b>
-                </div>
-
-                <div class="market-row">
-                    <span>BTC / USD</span>
-                    <strong>$67,240</strong>
-                    <b>+2.17%</b>
-                </div>
-
-            </div>
-
-        </div>
-
-    </section>
-
-</main>
-
-
-<section class="features">
-
-    <div class="feature-card">
-
-        <div class="feature-icon">
-            📊
-        </div>
-
-        <h3>
-            Advanced Trading
-        </h3>
-
-        <p>
-            Monitor markets and manage trading activity
-            from your dashboard.
-        </p>
+        Global Trading Platform
 
     </div>
 
 
-    <div class="feature-card">
+    <h1>
 
-        <div class="feature-icon">
-            📈
-        </div>
+        Trade smarter.<br>
 
-        <h3>
-            Investment Plans
-        </h3>
+        <span>
+            Invest with confidence.
+        </span>
 
-        <p>
-            Browse available investment opportunities
-            and monitor your investments.
-        </p>
+    </h1>
+
+
+    <p>
+
+        Access global markets, investment opportunities,
+        trading signals and portfolio tools from one
+        modern platform.
+
+    </p>
+
+
+    <div class="hero-buttons">
+
+        <button
+            class="primary-btn"
+            onclick="openSignup()"
+        >
+
+            Start Trading
+
+            <span>
+                →
+            </span>
+
+        </button>
+
+
+        <button
+            class="secondary-btn"
+            onclick="openLogin()"
+        >
+
+            Login to Account
+
+        </button>
 
     </div>
 
 
-    <div class="feature-card">
+    <div class="stats">
 
-        <div class="feature-icon">
-            ⚡
+        <div>
+
+            <strong>
+                24/7
+            </strong>
+
+            <small>
+                Market Access
+            </small>
+
         </div>
 
-        <h3>
-            Trading Signals
-        </h3>
 
-        <p>
-            View market signals with entry, TP and SL
-            information.
-        </p>
+        <div>
+
+            <strong>
+                50+
+            </strong>
+
+            <small>
+                Global Assets
+            </small>
+
+        </div>
+
+
+        <div>
+
+            <strong>
+                Secure
+            </strong>
+
+            <small>
+                Account Access
+            </small>
+
+        </div>
 
     </div>
 
 
-    <div class="feature-card">
+</section>
 
-        <div class="feature-icon">
-            🔐
+
+
+<section class="hero-visual">
+
+    <div class="image-card">
+
+        <img
+            src="https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?auto=format&fit=crop&w=1400&q=85"
+            alt="Trading charts"
+        >
+
+
+        <div class="market-card">
+
+            <div class="market-title">
+
+                <span>
+                    Market Overview
+                </span>
+
+                <span class="live">
+                    ● LIVE
+                </span>
+
+            </div>
+
+
+            <div class="market-row">
+
+                <span>
+                    Gold / USD
+                </span>
+
+                <strong>
+                    $2,658.40
+                </strong>
+
+                <b>
+                    +1.24%
+                </b>
+
+            </div>
+
+
+            <div class="market-row">
+
+                <span>
+                    EUR / USD
+                </span>
+
+                <strong>
+                    1.1738
+                </strong>
+
+                <b>
+                    +0.42%
+                </b>
+
+            </div>
+
+
+            <div class="market-row">
+
+                <span>
+                    BTC / USD
+                </span>
+
+                <strong>
+                    $67,240
+                </strong>
+
+                <b>
+                    +2.17%
+                </b>
+
+            </div>
+
         </div>
-
-        <h3>
-            Secure Accounts
-        </h3>
-
-        <p>
-            Authentication and database access controls
-            protect your account.
-        </p>
 
     </div>
 
 </section>
 
 
-<!-- LOGIN MODAL -->
+</main>
+
+
+
+<section class="features">
+
+
+<div class="feature-card">
+
+    <div class="feature-icon">
+        📊
+    </div>
+
+    <h3>
+        Advanced Trading
+    </h3>
+
+    <p>
+        Monitor markets and manage trading activity
+        from your dashboard.
+    </p>
+
+</div>
+
+
+
+<div class="feature-card">
+
+    <div class="feature-icon">
+        📈
+    </div>
+
+    <h3>
+        Investment Plans
+    </h3>
+
+    <p>
+        Browse available investment opportunities
+        and monitor your investments.
+    </p>
+
+</div>
+
+
+
+<div class="feature-card">
+
+    <div class="feature-icon">
+        ⚡
+    </div>
+
+    <h3>
+        Trading Signals
+    </h3>
+
+    <p>
+        View market signals with entry, TP and SL
+        information.
+    </p>
+
+</div>
+
+
+
+<div class="feature-card">
+
+    <div class="feature-icon">
+        🔐
+    </div>
+
+    <h3>
+        Secure Accounts
+    </h3>
+
+    <p>
+        Authentication and database access controls
+        protect your account.
+    </p>
+
+</div>
+
+
+</section>
+
+
+
+<!-- LOGIN -->
 
 <div
     class="modal"
     id="loginModal"
 >
 
-    <div class="modal-box">
-
-        <button
-            class="close"
-            onclick="closeModal()"
-        >
-            ×
-        </button>
-
-        <div class="modal-logo">
-            P
-        </div>
-
-        <h2>
-            Welcome back
-        </h2>
-
-        <p class="modal-subtitle">
-            Login to your trading account
-        </p>
+<div class="modal-box">
 
 
-        <form
-            id="loginForm"
-            onsubmit="login(event)"
-        >
-
-            <label>
-                Email Address
-            </label>
-
-            <input
-                type="email"
-                id="loginEmail"
-                placeholder="you@example.com"
-                autocomplete="email"
-                required
-            >
+<button
+    class="close"
+    onclick="closeModal()"
+>
+    ×
+</button>
 
 
-            <label>
-                Password
-            </label>
-
-            <input
-                type="password"
-                id="loginPassword"
-                placeholder="Enter your password"
-                autocomplete="current-password"
-                required
-            >
+<div class="modal-logo">
+    P
+</div>
 
 
-            <div class="form-options">
-
-                <label class="remember">
-
-                    <input
-                        type="checkbox"
-                    >
-
-                    Remember me
-
-                </label>
-
-                <a href="#">
-                    Forgot password?
-                </a>
-
-            </div>
+<h2>
+    Welcome back
+</h2>
 
 
-            <button
-                class="form-btn"
-                id="loginButton"
-                type="submit"
-            >
-                Login
-            </button>
-
-        </form>
+<p class="modal-subtitle">
+    Login to your trading account
+</p>
 
 
-        <p class="switch">
 
-            Don't have an account?
+<form
+    id="loginForm"
+    onsubmit="login(event)"
+>
 
-            <button onclick="switchToSignup()">
-                Create account
-            </button>
 
-        </p>
+<label>
+    Email Address
+</label>
 
-    </div>
+
+<input
+    type="email"
+    id="loginEmail"
+    placeholder="you@example.com"
+    autocomplete="email"
+    required
+>
+
+
+
+<label>
+    Password
+</label>
+
+
+<input
+    type="password"
+    id="loginPassword"
+    placeholder="Enter your password"
+    autocomplete="current-password"
+    required
+>
+
+
+
+<div class="form-options">
+
+<label class="remember">
+
+<input type="checkbox">
+
+Remember me
+
+</label>
+
+
+<a href="#">
+    Forgot password?
+</a>
 
 </div>
 
 
-<!-- SIGNUP MODAL -->
+
+<button
+    class="form-btn"
+    id="loginButton"
+    type="submit"
+>
+
+Login
+
+</button>
+
+
+</form>
+
+
+<p class="switch">
+
+Don't have an account?
+
+<button onclick="switchToSignup()">
+    Create account
+</button>
+
+</p>
+
+
+</div>
+
+</div>
+
+
+
+<!-- SIGN UP -->
 
 <div
     class="modal"
     id="signupModal"
 >
 
-    <div class="modal-box">
-
-        <button
-            class="close"
-            onclick="closeModal()"
-        >
-            ×
-        </button>
-
-        <div class="modal-logo">
-            P
-        </div>
-
-        <h2>
-            Create your account
-        </h2>
-
-        <p class="modal-subtitle">
-            Join the PrimeTrade platform
-        </p>
+<div class="modal-box">
 
 
-        <form
-            id="signupForm"
-            onsubmit="signup(event)"
-        >
-
-            <label>
-                Full Name
-            </label>
-
-            <input
-                type="text"
-                id="signupName"
-                placeholder="Your full name"
-                autocomplete="name"
-                required
-            >
+<button
+    class="close"
+    onclick="closeModal()"
+>
+    ×
+</button>
 
 
-            <label>
-                Email Address
-            </label>
-
-            <input
-                type="email"
-                id="signupEmail"
-                placeholder="you@example.com"
-                autocomplete="email"
-                required
-            >
+<div class="modal-logo">
+    P
+</div>
 
 
-            <label>
-                Password
-            </label>
-
-            <input
-                type="password"
-                id="signupPassword"
-                placeholder="At least 8 characters"
-                autocomplete="new-password"
-                minlength="8"
-                required
-            >
+<h2>
+    Create your account
+</h2>
 
 
-            <label>
-                Confirm Password
-            </label>
-
-            <input
-                type="password"
-                id="confirmPassword"
-                placeholder="Confirm your password"
-                autocomplete="new-password"
-                minlength="8"
-                required
-            >
+<p class="modal-subtitle">
+    Join the PrimeTrade platform
+</p>
 
 
-            <button
-                class="form-btn"
-                id="signupButton"
-                type="submit"
-            >
-                Create Account
-            </button>
 
-        </form>
+<form
+    id="signupForm"
+    onsubmit="signup(event)"
+>
 
 
-        <p class="switch">
+<label>
+    Full Name
+</label>
 
-            Already have an account?
 
-            <button onclick="switchToLogin()">
-                Login
-            </button>
+<input
+    type="text"
+    id="signupName"
+    placeholder="Your full name"
+    autocomplete="name"
+    required
+>
 
-        </p>
 
-    </div>
+
+<label>
+    Email Address
+</label>
+
+
+<input
+    type="email"
+    id="signupEmail"
+    placeholder="you@example.com"
+    autocomplete="email"
+    required
+>
+
+
+
+<label>
+    Password
+</label>
+
+
+<input
+    type="password"
+    id="signupPassword"
+    placeholder="At least 8 characters"
+    autocomplete="new-password"
+    minlength="8"
+    required
+>
+
+
+
+<label>
+    Confirm Password
+</label>
+
+
+<input
+    type="password"
+    id="confirmPassword"
+    placeholder="Confirm your password"
+    autocomplete="new-password"
+    minlength="8"
+    required
+>
+
+
+
+<button
+    class="form-btn"
+    id="signupButton"
+    type="submit"
+>
+
+Create Account
+
+</button>
+
+
+</form>
+
+
+<p class="switch">
+
+Already have an account?
+
+<button onclick="switchToLogin()">
+    Login
+</button>
+
+</p>
+
+
+</div>
 
 </div>
 
 
+
 <footer>
 
-    <div class="footer-logo">
-        PrimeTrade
-    </div>
+<div class="footer-logo">
+    PrimeTrade
+</div>
 
-    <p>
-        © 2026 PrimeTrade. Trading involves risk.
-    </p>
 
-    <div>
+<p>
+    © 2026 PrimeTrade. Trading involves risk.
+</p>
 
-        <a href="#">
-            Privacy
-        </a>
 
-        <a href="#">
-            Terms
-        </a>
+<div>
 
-        <a href="#">
-            Risk Disclosure
-        </a>
+<a href="#">
+    Privacy
+</a>
 
-    </div>
+<a href="#">
+    Terms
+</a>
+
+<a href="#">
+    Risk Disclosure
+</a>
+
+</div>
 
 </footer>
 
 
-<!-- SUPABASE -->
 
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
 
-<!-- YOUR JAVASCRIPT -->
 
-<script src="script.js"></script>
+// =====================================================
+// SUPABASE
+// =====================================================
+
+const SUPABASE_URL =
+"https://llsdzgdbmjeyjlykiebd.supabase.co";
+
+
+const SUPABASE_KEY =
+"sb_publishable_f8Iv69_FCX-HkPLimO5W7w_-CVfn8Wc";
+
+
+const supabaseClient =
+supabase.createClient(
+    SUPABASE_URL,
+    SUPABASE_KEY
+);
+
+
+
+// =====================================================
+// MODALS
+// =====================================================
+
+const loginModal =
+document.getElementById("loginModal");
+
+
+const signupModal =
+document.getElementById("signupModal");
+
+
+function openLogin(){
+
+    signupModal.style.display = "none";
+
+    loginModal.style.display = "flex";
+
+}
+
+
+function openSignup(){
+
+    loginModal.style.display = "none";
+
+    signupModal.style.display = "flex";
+
+}
+
+
+function closeModal(){
+
+    loginModal.style.display = "none";
+
+    signupModal.style.display = "none";
+
+}
+
+
+function switchToSignup(){
+
+    openSignup();
+
+}
+
+
+function switchToLogin(){
+
+    openLogin();
+
+}
+
+
+
+// =====================================================
+// LOGIN
+// =====================================================
+
+async function login(event){
+
+    event.preventDefault();
+
+
+    const email =
+    document
+    .getElementById("loginEmail")
+    .value
+    .trim();
+
+
+    const password =
+    document
+    .getElementById("loginPassword")
+    .value;
+
+
+    const button =
+    document
+    .getElementById("loginButton");
+
+
+    button.disabled = true;
+
+    button.textContent =
+    "Logging in...";
+
+
+    try{
+
+        const {data,error} =
+        await supabaseClient
+        .auth
+        .signInWithPassword({
+
+            email:email,
+
+            password:password
+
+        });
+
+
+        if(error){
+
+            throw error;
+
+        }
+
+
+        alert(
+            "Login successful!"
+        );
+
+
+        /*
+         * Dashboard will be added next.
+         *
+         * For now this confirms that
+         * Supabase authentication works.
+         */
+
+
+        console.log(
+            "Logged in:",
+            data.user
+        );
+
+
+        closeModal();
+
+
+    }catch(error){
+
+        console.error(error);
+
+
+        alert(
+            "Login failed:\n\n" +
+            error.message
+        );
+
+
+    }finally{
+
+        button.disabled = false;
+
+        button.textContent =
+        "Login";
+
+    }
+
+}
+
+
+
+// =====================================================
+// SIGN UP
+// =====================================================
+
+async function signup(event){
+
+    event.preventDefault();
+
+
+    const name =
+    document
+    .getElementById("signupName")
+    .value
+    .trim();
+
+
+    const email =
+    document
+    .getElementById("signupEmail")
+    .value
+    .trim();
+
+
+    const password =
+    document
+    .getElementById("signupPassword")
+    .value;
+
+
+    const confirmPassword =
+    document
+    .getElementById("confirmPassword")
+    .value;
+
+
+    if(password.length < 8){
+
+        alert(
+            "Password must contain at least 8 characters."
+        );
+
+        return;
+
+    }
+
+
+    if(password !== confirmPassword){
+
+        alert(
+            "Passwords do not match."
+        );
+
+        return;
+
+    }
+
+
+    const button =
+    document
+    .getElementById("signupButton");
+
+
+    button.disabled = true;
+
+    button.textContent =
+    "Creating account...";
+
+
+    try{
+
+        const {data,error} =
+        await supabaseClient
+        .auth
+        .signUp({
+
+            email:email,
+
+            password:password,
+
+            options:{
+
+                data:{
+
+                    full_name:name
+
+                }
+
+            }
+
+        });
+
+
+        if(error){
+
+            throw error;
+
+        }
+
+
+        alert(
+            "Account created successfully!"
+        );
+
+
+        document
+        .getElementById("signupForm")
+        .reset();
+
+
+        openLogin();
+
+
+    }catch(error){
+
+        console.error(error);
+
+
+        alert(
+            "Registration failed:\n\n" +
+            error.message
+        );
+
+
+    }finally{
+
+        button.disabled = false;
+
+        button.textContent =
+        "Create Account";
+
+    }
+
+}
+
+
+
+// =====================================================
+// CHECK SESSION
+// =====================================================
+
+async function checkSession(){
+
+    const {data,error} =
+    await supabaseClient
+    .auth
+    .getSession();
+
+
+    if(error){
+
+        console.error(error);
+
+        return;
+
+    }
+
+
+    if(data.session){
+
+        console.log(
+            "Logged in as:",
+            data.session.user.email
+        );
+
+    }
+
+}
+
+
+checkSession();
+
+
+
+// =====================================================
+// CLOSE MODAL WHEN CLICKING OUTSIDE
+// =====================================================
+
+window.addEventListener(
+"click",
+function(event){
+
+    if(event.target === loginModal){
+
+        closeModal();
+
+    }
+
+
+    if(event.target === signupModal){
+
+        closeModal();
+
+    }
+
+});
+
+</script>
+
 
 </body>
 </html>
