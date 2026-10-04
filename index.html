@@ -555,6 +555,261 @@ footer a{
 
 }
 
+
+/* =====================================================
+   DASHBOARD
+   ===================================================== */
+
+.dashboard-page{
+    display:none;
+    min-height:calc(100vh - 78px);
+    background:#f8fafc;
+    padding:35px 7% 60px;
+}
+
+body.logged-in .hero,
+body.logged-in .features,
+body.logged-in footer{
+    display:none;
+}
+
+body.logged-in .dashboard-page{
+    display:block;
+}
+
+.dashboard-top{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:20px;
+    margin-bottom:28px;
+}
+
+.dashboard-top h1{
+    font-size:32px;
+    margin-bottom:7px;
+}
+
+.dashboard-top p{
+    color:#64748b;
+    font-size:14px;
+}
+
+.dashboard-user-actions{
+    display:flex;
+    align-items:center;
+    gap:10px;
+}
+
+.dashboard-email{
+    background:white;
+    border:1px solid #e5e7eb;
+    padding:11px 14px;
+    border-radius:9px;
+    font-size:13px;
+    color:#475569;
+}
+
+.logout-btn{
+    border:none;
+    padding:11px 16px;
+    border-radius:9px;
+    background:#111827;
+    color:#fff;
+    font-weight:700;
+    cursor:pointer;
+}
+
+.balance-grid{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:18px;
+    margin-bottom:24px;
+}
+
+.balance-card{
+    background:#fff;
+    border:1px solid #e7ebf0;
+    border-radius:16px;
+    padding:22px;
+    box-shadow:0 8px 30px rgba(15,23,42,.04);
+}
+
+.balance-card small{
+    color:#64748b;
+    font-size:12px;
+}
+
+.balance-card strong{
+    display:block;
+    margin-top:8px;
+    font-size:25px;
+}
+
+.dashboard-grid{
+    display:grid;
+    grid-template-columns:1.2fr .8fr;
+    gap:20px;
+}
+
+.panel{
+    background:#fff;
+    border:1px solid #e7ebf0;
+    border-radius:16px;
+    padding:22px;
+    margin-bottom:20px;
+}
+
+.panel h2{
+    font-size:18px;
+    margin-bottom:16px;
+}
+
+.plan-list{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:15px;
+}
+
+.plan-card{
+    border:1px solid #e5e7eb;
+    border-radius:13px;
+    padding:17px;
+}
+
+.plan-card h3{
+    font-size:16px;
+    margin-bottom:7px;
+}
+
+.plan-card p{
+    color:#64748b;
+    font-size:12px;
+    line-height:1.6;
+    min-height:38px;
+}
+
+.plan-meta{
+    margin-top:13px;
+    font-size:12px;
+    color:#475569;
+    display:grid;
+    gap:6px;
+}
+
+.signal-table-wrap{
+    overflow:auto;
+}
+
+.signal-table{
+    width:100%;
+    border-collapse:collapse;
+    min-width:600px;
+    font-size:12px;
+}
+
+.signal-table th,
+.signal-table td{
+    text-align:left;
+    padding:11px 8px;
+    border-bottom:1px solid #eef2f7;
+}
+
+.signal-table th{
+    color:#64748b;
+    font-weight:600;
+}
+
+.buy{
+    color:#16a34a;
+    font-weight:800;
+}
+
+.sell{
+    color:#dc2626;
+    font-weight:800;
+}
+
+.empty-state{
+    color:#64748b;
+    font-size:13px;
+    padding:8px 0;
+}
+
+.status-pill{
+    display:inline-block;
+    padding:5px 8px;
+    border-radius:999px;
+    background:#eff6ff;
+    color:#2563eb;
+    font-size:10px;
+    font-weight:700;
+    text-transform:uppercase;
+}
+
+.refresh-btn{
+    border:1px solid #dbe1e8;
+    background:#fff;
+    color:#111827;
+    padding:9px 13px;
+    border-radius:8px;
+    cursor:pointer;
+    font-weight:600;
+}
+
+.panel-heading{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:10px;
+    margin-bottom:16px;
+}
+
+.panel-heading h2{
+    margin:0;
+}
+
+.dashboard-loading{
+    color:#64748b;
+    font-size:13px;
+    margin-top:5px;
+}
+
+@media(max-width:1000px){
+    .balance-grid{
+        grid-template-columns:repeat(2,1fr);
+    }
+    .dashboard-grid{
+        grid-template-columns:1fr;
+    }
+    .plan-list{
+        grid-template-columns:1fr;
+    }
+}
+
+@media(max-width:600px){
+    .dashboard-page{
+        padding:25px 20px 45px;
+    }
+    .dashboard-top{
+        flex-direction:column;
+        align-items:flex-start;
+    }
+    .dashboard-user-actions{
+        width:100%;
+        justify-content:space-between;
+    }
+    .dashboard-email{
+        max-width:65%;
+        overflow:hidden;
+        text-overflow:ellipsis;
+        white-space:nowrap;
+    }
+    .balance-grid{
+        grid-template-columns:1fr 1fr;
+    }
+}
+
 </style>
 </head>
 
@@ -1155,6 +1410,111 @@ Already have an account?
 
 
 
+
+<!-- =====================================================
+     DASHBOARD
+     ===================================================== -->
+<section class="dashboard-page" id="dashboardPage">
+
+    <div class="dashboard-top">
+        <div>
+            <h1 id="dashboardGreeting">Welcome back</h1>
+            <p>Your PrimeTrade account overview.</p>
+            <div class="dashboard-loading" id="dashboardMessage"></div>
+        </div>
+
+        <div class="dashboard-user-actions">
+            <div class="dashboard-email" id="dashboardEmail">Loading...</div>
+            <button class="logout-btn" onclick="logout()">Logout</button>
+        </div>
+    </div>
+
+    <div class="balance-grid">
+        <div class="balance-card">
+            <small>Main Balance</small>
+            <strong id="mainBalance">$0.00</strong>
+        </div>
+
+        <div class="balance-card">
+            <small>Active Investments</small>
+            <strong id="activeInvestments">$0.00</strong>
+        </div>
+
+        <div class="balance-card">
+            <small>Projected Profit</small>
+            <strong id="projectedProfit">$0.00</strong>
+        </div>
+
+        <div class="balance-card">
+            <small>Realized Profit</small>
+            <strong id="realizedProfit">$0.00</strong>
+        </div>
+    </div>
+
+    <div class="dashboard-grid">
+
+        <div>
+            <div class="panel">
+                <div class="panel-heading">
+                    <h2>Investment Plans</h2>
+                    <button class="refresh-btn" onclick="loadDashboard()">Refresh</button>
+                </div>
+                <div class="plan-list" id="planList">
+                    <div class="empty-state">Loading plans...</div>
+                </div>
+            </div>
+
+            <div class="panel">
+                <div class="panel-heading">
+                    <h2>Open Trading Signals</h2>
+                </div>
+
+                <div class="signal-table-wrap">
+                    <table class="signal-table">
+                        <thead>
+                            <tr>
+                                <th>Asset</th>
+                                <th>Direction</th>
+                                <th>Entry</th>
+                                <th>Take Profit</th>
+                                <th>Stop Loss</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody id="signalTableBody">
+                            <tr>
+                                <td colspan="6" class="empty-state">Loading signals...</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div>
+            <div class="panel">
+                <h2>Account</h2>
+                <div class="plan-meta">
+                    <div><strong>Status:</strong> <span id="accountStatus">Loading...</span></div>
+                    <div><strong>Role:</strong> <span id="accountRole">user</span></div>
+                    <div><strong>Email:</strong> <span id="accountEmail">Loading...</span></div>
+                </div>
+            </div>
+
+            <div class="panel">
+                <h2>Next Steps</h2>
+                <div class="empty-state">
+                    Your dashboard is now connected to Supabase. Deposits, withdrawals,
+                    investments and other account actions should be processed through
+                    the database rules and admin workflow rather than changing balances
+                    directly in the browser.
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>
+
 <footer>
 
 <div class="footer-logo">
@@ -1318,26 +1678,12 @@ async function login(event){
         }
 
 
-        alert(
-            "Login successful!"
-        );
-
-
-        /*
-         * Dashboard will be added next.
-         *
-         * For now this confirms that
-         * Supabase authentication works.
-         */
-
-
-        console.log(
-            "Logged in:",
-            data.user
-        );
-
+        console.log("Logged in:", data.user);
 
         closeModal();
+        document.getElementById("loginForm").reset();
+
+        await showDashboard(data.user);
 
 
     }catch(error){
@@ -1463,17 +1809,19 @@ async function signup(event){
         }
 
 
-        alert(
-            "Account created successfully!"
-        );
-
-
         document
-        .getElementById("signupForm")
-        .reset();
+            .getElementById("signupForm")
+            .reset();
 
-
-        openLogin();
+        if(data.session){
+            closeModal();
+            await showDashboard(data.user);
+        }else{
+            alert(
+                "Account created. Please check your email and confirm your account before logging in."
+            );
+            openLogin();
+        }
 
 
     }catch(error){
@@ -1501,40 +1849,255 @@ async function signup(event){
 
 
 // =====================================================
-// CHECK SESSION
+// AUTH + DASHBOARD
 // =====================================================
 
-async function checkSession(){
-
-    const {data,error} =
-    await supabaseClient
-    .auth
-    .getSession();
-
-
-    if(error){
-
-        console.error(error);
-
-        return;
-
-    }
-
-
-    if(data.session){
-
-        console.log(
-            "Logged in as:",
-            data.session.user.email
-        );
-
-    }
-
+function money(value){
+    const number = Number(value || 0);
+    return number.toLocaleString("en-US", {
+        style:"currency",
+        currency:"USD",
+        minimumFractionDigits:2
+    });
 }
 
 
-checkSession();
+function getDisplayName(user, profile){
+    return (
+        profile?.full_name ||
+        user?.user_metadata?.full_name ||
+        user?.email?.split("@")[0] ||
+        "Trader"
+    );
+}
 
+
+async function showDashboard(user){
+    if(!user) return;
+
+    document.body.classList.add("logged-in");
+
+    const dashboardEmail = document.getElementById("dashboardEmail");
+    const accountEmail = document.getElementById("accountEmail");
+
+    dashboardEmail.textContent = user.email || "Account";
+    accountEmail.textContent = user.email || "Account";
+
+    await loadDashboard(user);
+}
+
+
+async function loadDashboard(passedUser = null){
+    const message = document.getElementById("dashboardMessage");
+    message.textContent = "Loading your account...";
+
+    try{
+        let user = passedUser;
+
+        if(!user){
+            const sessionResult = await supabaseClient.auth.getSession();
+
+            if(sessionResult.error){
+                throw sessionResult.error;
+            }
+
+            user = sessionResult.data.session?.user;
+        }
+
+        if(!user){
+            document.body.classList.remove("logged-in");
+            return;
+        }
+
+        const profileResult = await supabaseClient
+            .from("profiles")
+            .select("full_name,email,role,account_status,balance")
+            .eq("id", user.id)
+            .maybeSingle();
+
+        if(profileResult.error){
+            console.warn("Profile load warning:", profileResult.error);
+        }
+
+        const profile = profileResult.data;
+
+        document.getElementById("dashboardGreeting").textContent =
+            `Welcome back, ${getDisplayName(user, profile)}`;
+
+        document.getElementById("dashboardEmail").textContent =
+            profile?.email || user.email || "Account";
+
+        document.getElementById("accountEmail").textContent =
+            profile?.email || user.email || "Account";
+
+        document.getElementById("accountStatus").textContent =
+            profile?.account_status || "active";
+
+        document.getElementById("accountRole").textContent =
+            profile?.role || "user";
+
+        document.getElementById("mainBalance").textContent =
+            money(profile?.balance || 0);
+
+        const investmentsResult = await supabaseClient
+            .from("investments")
+            .select("amount,projected_profit,realized_profit,status")
+            .eq("user_id", user.id);
+
+        if(investmentsResult.error){
+            console.warn("Investment load warning:", investmentsResult.error);
+        }
+
+        const investments = investmentsResult.data || [];
+
+        const activeTotal = investments
+            .filter(item => item.status === "active")
+            .reduce((sum, item) => sum + Number(item.amount || 0), 0);
+
+        const projectedTotal = investments
+            .reduce((sum, item) => sum + Number(item.projected_profit || 0), 0);
+
+        const realizedTotal = investments
+            .reduce((sum, item) => sum + Number(item.realized_profit || 0), 0);
+
+        document.getElementById("activeInvestments").textContent =
+            money(activeTotal);
+
+        document.getElementById("projectedProfit").textContent =
+            money(projectedTotal);
+
+        document.getElementById("realizedProfit").textContent =
+            money(realizedTotal);
+
+        const plansResult = await supabaseClient
+            .from("investment_plans")
+            .select("name,description,minimum_amount,maximum_amount,duration_days,projected_return_percent")
+            .eq("status","active")
+            .order("minimum_amount",{ascending:true});
+
+        const planList = document.getElementById("planList");
+
+        if(plansResult.error){
+            planList.innerHTML =
+                `<div class="empty-state">Could not load plans: ${escapeHtml(plansResult.error.message)}</div>`;
+        }else if(!plansResult.data?.length){
+            planList.innerHTML =
+                `<div class="empty-state">No active investment plans are available.</div>`;
+        }else{
+            planList.innerHTML = plansResult.data.map(plan => `
+                <div class="plan-card">
+                    <h3>${escapeHtml(plan.name)}</h3>
+                    <p>${escapeHtml(plan.description || "Investment opportunity.")}</p>
+                    <div class="plan-meta">
+                        <div>Min: <strong>${money(plan.minimum_amount)}</strong></div>
+                        <div>Max: <strong>${money(plan.maximum_amount)}</strong></div>
+                        <div>Duration: <strong>${Number(plan.duration_days || 0)} days</strong></div>
+                        <div>Projected: <strong>${Number(plan.projected_return_percent || 0)}%</strong></div>
+                    </div>
+                </div>
+            `).join("");
+        }
+
+        const signalsResult = await supabaseClient
+            .from("trading_signals")
+            .select("asset,direction,entry_price,take_profit,stop_loss,status,created_at")
+            .eq("status","open")
+            .order("created_at",{ascending:false})
+            .limit(10);
+
+        const signalBody = document.getElementById("signalTableBody");
+
+        if(signalsResult.error){
+            signalBody.innerHTML =
+                `<tr><td colspan="6" class="empty-state">Could not load signals: ${escapeHtml(signalsResult.error.message)}</td></tr>`;
+        }else if(!signalsResult.data?.length){
+            signalBody.innerHTML =
+                `<tr><td colspan="6" class="empty-state">No open signals right now.</td></tr>`;
+        }else{
+            signalBody.innerHTML = signalsResult.data.map(signal => {
+                const directionClass =
+                    String(signal.direction).toUpperCase() === "BUY" ? "buy" : "sell";
+
+                return `
+                    <tr>
+                        <td>${escapeHtml(signal.asset || "-")}</td>
+                        <td class="${directionClass}">
+                            ${escapeHtml(signal.direction || "-")}
+                        </td>
+                        <td>${escapeHtml(String(signal.entry_price ?? "-"))}</td>
+                        <td>${escapeHtml(String(signal.take_profit ?? "-"))}</td>
+                        <td>${escapeHtml(String(signal.stop_loss ?? "-"))}</td>
+                        <td><span class="status-pill">${escapeHtml(signal.status || "-")}</span></td>
+                    </tr>
+                `;
+            }).join("");
+        }
+
+        message.textContent = "";
+
+    }catch(error){
+        console.error("Dashboard error:", error);
+        message.textContent = "Some dashboard data could not be loaded.";
+    }
+}
+
+
+function escapeHtml(value){
+    return String(value ?? "")
+        .replaceAll("&","&amp;")
+        .replaceAll("<","&lt;")
+        .replaceAll(">","&gt;")
+        .replaceAll('"',"&quot;")
+        .replaceAll("'","&#039;");
+}
+
+
+async function logout(){
+    const {error} = await supabaseClient.auth.signOut();
+
+    if(error){
+        alert("Logout failed:\n\n" + error.message);
+        return;
+    }
+
+    document.body.classList.remove("logged-in");
+    document.getElementById("dashboardMessage").textContent = "";
+}
+
+
+async function checkSession(){
+
+    try{
+        const {data,error} =
+            await supabaseClient
+                .auth
+                .getSession();
+
+        if(error){
+            console.error(error);
+            return;
+        }
+
+        if(data.session){
+            await showDashboard(data.session.user);
+        }
+
+    }catch(error){
+        console.error("Session check failed:", error);
+    }
+}
+
+
+supabaseClient.auth.onAuthStateChange(async (event, session) => {
+    if(session){
+        await showDashboard(session.user);
+    }else{
+        document.body.classList.remove("logged-in");
+    }
+});
+
+
+checkSession();
 
 
 // =====================================================
