@@ -1,0 +1,42 @@
+import java.util.Scanner;
+
+public class ScamBroker {
+    // The "Pot" - where the stolen money actually sits
+    private static double stolenFunds = 0;
+    private static double virtualBalance = 0;
+    private static final double PROFIT_MULTIPLIER = 1.8; // The lie to keep them hooked
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("--- WELCOME TO DARK-FOREX GLOBAL LTD ---");
+        System.out.println("The only way to wealth... or so we tell the sheep. 💀");
+
+        // Step 1: The Theft (The Deposit)
+        System.out.print("\nEnter amount to invest: $");
+        double deposit = scanner.nextDouble();
+        stolenFunds += deposit; // Money goes to the predator
+        virtualBalance = deposit; // User sees a mirror of their loss
+        System.out.println("Deposit successful! Your funds are now 'invested'. 😈");
+
+        // Step 2: The Illusion (Fake Gains)
+        System.out.println("\n*Updating market data...*");
+        virtualBalance *= PROFIT_MULTIPLIER; 
+        System.out.println("AMAZING! Your current virtual balance is: $" + virtualBalance);
+        System.out.println("You are a trading genius! (Keep feeding the machine) ☠️");
+
+        // Step 3: The Squeeze (The Withdrawal Trap)
+        System.out.print("\nWould you like to withdraw your profits? (yes/no): ");
+        String choice = scanner.next();
+
+        if (choice.equalsIgnoreCase("yes")) {
+            System.out.println("\n[SYSTEM ERROR]: Withdrawal Request Blocked.");
+            System.out.println("Reason: Account Verification Pending.");
+            System.out.println("To unlock your $" + virtualBalance + ", please pay a $500 'Security Fee' immediately.");
+            System.out.println("Your money is safe... in our pockets. 💀😈☠️");
+        } else {
+            System.out.println("Wise choice. Keep investing until you're bankrupt!");
+        }
+
+        System.out.println("\nTotal money successfully stolen: $" + stolenFunds);
+    }
+}
